@@ -17,8 +17,20 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('youtube');
+  .config(['$stateProvider', '$urlRouterProvider', 'config', function ($stateProvider, $urlRouterProvider, config) {
+     var otherwise = 'youtube';
+     switch(config.video_type){
+       case "youtube":
+       break;
+       case "vimeo":
+        console.log('vim');
+        otherwise = 'vimeo';
+       break;
+       default:
+       break;
+     }
+    
+    $urlRouterProvider.otherwise(otherwise);
     $stateProvider
       .state('video', {
         abstract: true,
@@ -51,7 +63,6 @@ angular
           $rootScope.youtubeReady.resolve();
           //$rootScope.$broadcast( 'onYouTubePlayerAPIReady' );
       };
-      $rootScope.settings = $q.defer();
   }]);
   
   window.addEventListener("message", function(event){
@@ -63,6 +74,7 @@ angular
   
   window.test = function(){
     var testData = {
+      video_type : "vimeo",
       youtube : {
         APIKey : 'AIzaSyBUi36u48h1eFld14jwUajKKpiI61UMyDM'
       },
