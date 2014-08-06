@@ -1,7 +1,7 @@
 <div class="controls">
    <textarea ng-model="embed" class="youtube-id text-input" placeholder="embed code here..."></textarea>
    <div class="youtube-fetcher-submit button" ng-click="fetch(vidID)" title="Save embed">Process</div>
-    <div class="button remove-video" title="remove this video" ng-click="r = null">✕</div>
+    <div class="button remove-video" title="remove this video" ng-click="embed = null; trusted = null; remove();">✕</div>
 </div>
 <div class="notification"></div>
 <div class="response" ng-show="trusted" ng-bind-html="trusted">           

@@ -1,7 +1,7 @@
 <div class="controls">
    <input type="text" ng-model="vidID" class="youtube-id" placeholder="Video ID, ie: RubBzkZzpUA"/>
    <div class="youtube-fetcher-submit button" ng-click="fetch(vidID)" title="Fetch youtube video from ID">Fetch</div>
-    <div class="button remove-video" title="remove this video" ng-click="r = null">✕</div>
+    <div class="button remove-video" title="remove this video" ng-click="r = null; remove();">✕</div>
 </div>
 <div class="notification"></div>
 <div class="response" ng-if="r">

@@ -57,9 +57,12 @@ angular
         prettyName: 'embed'
       });      
   }])
-  .run(['$document', '$rootScope', '$q', '$window', 'config', '$state', function($document, $rootScope, $q, $window, config, $state){
+  .run(['$document', '$rootScope', '$q', '$window', 'config', '$state', 'storage', function($document, $rootScope, $q, $window, config, $state, storage){
      $rootScope.state = $state;
      $rootScope.video = config.video;
+     $rootScope.remove = function(){
+       storage.remove();
+     };
      window.$rootScope = $rootScope;
      window.$state = $state;
       console.log('app started', config);
@@ -93,7 +96,16 @@ angular
           $rootScope.video = data;
           console.log('passing obj up : ', obj);
           event.source.postMessage(obj, "*");
-        }
+        },
+        remove : function(){
+          var obj = {
+            UID : event.data.UID,
+            data : null 
+          };
+          $rootScope.video = null;
+          console.log('passing obj up : ', obj);
+          event.source.postMessage(obj, "*"); 
+        }        
       };
     }]);
     angular.bootstrap(document, ['appApp']);
@@ -143,4 +155,4 @@ angular
     };
     window.postMessage(testData, "*");
   };
- // test();//lz
+  //test();//lz

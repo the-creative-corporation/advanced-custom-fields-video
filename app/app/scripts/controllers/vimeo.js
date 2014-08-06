@@ -10,7 +10,7 @@
 angular.module('appApp')
   .controller('VimeoCtrl', ['$scope', '$rootScope', '$http', 'config', 'storage', function ($scope, $rootScope, $http, config, storage) {
        var type = 'vimeo';
-       if ($rootScope.video.video_type === type){
+       if ($rootScope.video && $rootScope.video.video_type === type){
          $scope.r = $rootScope.video.video;
        };
        $scope.fetch = function(id){

@@ -89,7 +89,7 @@ class acf_field_youtube extends acf_field
 		// create Field HTML
 		$dir = apply_filters('acf/helpers/get_dir', __FILE__);
 		echo "<div class='yt-wrapper'>";
-		echo sprintf( '<iframe class="acf-youtube" onload="acfVideoInit(this)"  src="%1$s"></iframe>', $dir . '/app/dist/index.html');
+		echo sprintf( '<iframe class="acf-youtube" onload="acfVideoInit(this)"  src="%1$s"></iframe>', $dir . 'app/dist/index.html');
 		//echo sprintf( '<input type="hidden" value="%s">',  $field['value'] );
 		echo sprintf( '<input type="hidden" class="%s" name="%s" value="%s">', $field['class'], $field['name'], $field['value']  );
 		echo "</div>";

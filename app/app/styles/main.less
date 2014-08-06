@@ -1,3 +1,4 @@
+@import '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css';
 @import 'framework';
 @import 'youtube';
 @import 'vimeo';
@@ -10,6 +11,7 @@ html, body {
 body {
   font-size:16px;
   font-family:sans-serif;
+  margin: 0.35em;
 }
 a, a:visited {
   color:inherit;
@@ -65,14 +67,35 @@ a, a:visited {
     }
   }
 }
-footer {
-  color:black;
+footer.footer {
+  background:@grey;
+  position:relative;
 }
 .credits-trigger {
   cursor:pointer;
   padding:0.25em;
-  background:#2d3136;
   color:white;
+  color: #3E454D;
+  font-size:0.9em;
+  text-align:center;
+}
+.credits {
+  position: absolute; 
+  bottom: 1.4rem;
+  width: 100%;
+  background: rgba(70, 70, 70, 0.68);
+  color: white;
+  transform:scaleY(0);
+  transform-origin:bottom;
+  transition:transform 1s ease;
+  .close {
+    float:right;
+    padding:0.5em;
+    cursor:pointer;
+  }
+  &.active {
+    transform:scaleY(1);
+  }
 }
 
 .main-view {
@@ -128,7 +151,7 @@ footer {
   position:relative;
   padding:0.5em;
   text-align:right;
-  background: rgb(231, 231, 231);
+  background: @grey;
   .add-video, .remove-video {
     position:absolute;
     top:0;

@@ -1,5 +1,9 @@
+@import '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css';
 .HWRENDER {
   transform: translateY(0px);
+}
+body.youtube {
+  box-shadow: 0px 3px 13px #670f0c;
 }
 .youtube .button {
   background: #e52d27;
@@ -7,11 +11,17 @@
 .youtube .response {
   border-top: 1px solid #e52d27;
 }
+body.vimeo {
+  box-shadow: 0px 3px 13px #094c62;
+}
 .vimeo .button {
   background: #1ab7ea;
 }
 .vimeo .response {
   border-top: 1px solid #1ab7ea;
+}
+body.embed {
+  box-shadow: 0px 3px 13px #748495;
 }
 .embed .button {
   background: #748495;
@@ -27,6 +37,7 @@ body {
 body {
   font-size: 16px;
   font-family: sans-serif;
+  margin: 0.35em;
 }
 a,
 a:visited {
@@ -75,14 +86,35 @@ a:visited {
 .header .nav li.embed a {
   background: #748495;
 }
-footer {
-  color: black;
+footer.footer {
+  background: #e7e7e7;
+  position: relative;
 }
 .credits-trigger {
   cursor: pointer;
   padding: 0.25em;
-  background: #2d3136;
   color: white;
+  color: #3E454D;
+  font-size: 0.9em;
+  text-align: center;
+}
+.credits {
+  position: absolute;
+  bottom: 1.4rem;
+  width: 100%;
+  background: rgba(70, 70, 70, 0.68);
+  color: white;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 1s ease;
+}
+.credits .close {
+  float: right;
+  padding: 0.5em;
+  cursor: pointer;
+}
+.credits.active {
+  transform: scaleY(1);
 }
 .main-view {
   text-align: center;

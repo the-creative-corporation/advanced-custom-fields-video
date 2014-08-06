@@ -31,13 +31,19 @@
       <div ui-view=""></div>
 
       <footer class="footer">
-       <div class="credits-trigger" ng-click="showCredits = !showCredits">Credits & info</div>
-       <div class="credits" ng-show="showCredits">
+       <div class="credits" ng-class="{active : showCredits}">
+         <div class="close" ng-click="showCredits = 0">
+           <i class="fa fa-times"></i>
+         </div>
          <ul>
            <li>Joseph Niet</li>
            <li>The Creative Corporation</li>
          </ul>
+         <div class="repo">
+           <a href="https://github.com/the-creative-corporation/advanced-custom-fields-youtube" target="_blank">GitHub Project</a>
+         </div>
        </div>
+       <div class="credits-trigger" ng-click="showCredits = !showCredits">Credits & info</div>
       </footer>
     </div>
 

@@ -10,7 +10,7 @@
 angular.module('appApp')
   .controller('EmbedCtrl', ['$scope', '$rootScope', '$sce', 'config', 'storage', function ($scope, $rootScope, $sce, config, storage) {
        var type = 'embed';
-       if ($rootScope.video.video_type === type){
+       if ($rootScope.video && $rootScope.video.video_type === type){
          $scope.embed = $rootScope.video.video;
          $scope.trusted = $sce.trustAsHtml($scope.embed);
        }
@@ -24,4 +24,3 @@ angular.module('appApp')
           });
         };
   }]);
-      //
