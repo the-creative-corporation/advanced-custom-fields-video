@@ -13,6 +13,12 @@
 .vimeo .response {
   border-top: 1px solid #1ab7ea;
 }
+.embed .button {
+  background: #748495;
+}
+.embed .response {
+  border-top: 1px solid #748495;
+}
 html,
 body {
   margin: 0;

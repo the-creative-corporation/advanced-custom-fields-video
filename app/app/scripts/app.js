@@ -23,8 +23,10 @@ angular
        case "youtube":
        break;
        case "vimeo":
-        console.log('vim');
         otherwise = 'vimeo';
+       break;
+       case "embed":
+        otherwise = 'embed';
        break;
        default:
        break;
