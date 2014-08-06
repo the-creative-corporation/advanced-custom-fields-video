@@ -112,7 +112,7 @@ class acf_field_youtube extends acf_field
 	*/
 
 	function format_value( $value, $post_id, $field ) {
-		return urlencode( json_encode( $value ) );
+		return htmlspecialchars( json_encode( $value ) );
 	}
 
 	/*
