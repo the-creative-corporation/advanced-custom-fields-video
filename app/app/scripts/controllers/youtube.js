@@ -21,6 +21,10 @@ angular.module('appApp')
               $http({method: 'GET', url: url}).success(function(data, status, headers, config) {
                   //console.log('data!', data);
                   $scope.r = data.items[0];
+                  storage.save({    
+                    video_type : 'youtube',                  
+                    video : $scope.r
+                  });                  
               }).
               error(function(data, status, headers, config) {
                 // called asynchronously if an error occurs

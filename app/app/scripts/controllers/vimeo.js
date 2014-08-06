@@ -8,7 +8,7 @@
  * Controller of the appApp
  */
 angular.module('appApp')
-  .controller('VimeoCtrl', ['$scope', '$rootScope', '$http', 'config', function ($scope, $rootScope, $http, config) {
+  .controller('VimeoCtrl', ['$scope', '$rootScope', '$http', 'config', 'storage', function ($scope, $rootScope, $http, config, storage) {
        if (config.youtube.video){
          
        };
@@ -18,6 +18,10 @@ angular.module('appApp')
               $http({method: 'GET', url: url}).success(function(data, status, headers, config) {
                   console.log('data!', data);
                   $scope.r = data[0];
+                  storage.save({    
+                    video_type : 'vimeo',                  
+                    video : $scope.r
+                  });
               }).
               error(function(data, status, headers, config) {
                 // called asynchronously if an error occurs

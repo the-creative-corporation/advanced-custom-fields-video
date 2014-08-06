@@ -20,7 +20,8 @@
 <script type="text/javascript">
   window.acfVideoInit = function(iframe) {
     var $ = jQuery;
-    input = $(iframe).siblings('input');
+    input = $(iframe).siblings('input'),
+    UID = Math.floor( Math.random() * 10000000000 );
 
     //LISTEN TO DATA BROADCAST FROM IFRAME
     function listen(){
@@ -28,7 +29,7 @@
         var sanitized, iWindow = iframe.contentWindow;
         //$rootScope.settings.resolve();
         console.log('message passed up :)', event);
-        if (event.data.iframe === iframe){//match element to make sure we're dealing with correct field;
+        if (event.data.UID === UID){//match UID to make sure we're dealing with correct field;
           $(iframe).height(iWindow.$(iWindow.document).height());//resize our iframe to fit new size;
           sanitized = encodeURIComponent(JSON.stringify(data));
           input.val(sanitized);        
@@ -46,7 +47,8 @@
         sanitized = false;
       }    
       data = {
-        iframeElem : iframe,
+        init : true,
+        UID : UID,
         video : sanitized,
         youtube : {
           APIKey : 'AIzaSyBUi36u48h1eFld14jwUajKKpiI61UMyDM'
