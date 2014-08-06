@@ -141,4 +141,4 @@ angular
     };
     window.postMessage(testData, "*");
   };
-  test();//lz
+ // test();//lz
