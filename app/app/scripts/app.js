@@ -19,7 +19,7 @@ angular
   ])
   .config(['$stateProvider', '$urlRouterProvider', 'config', function ($stateProvider, $urlRouterProvider, config) {
      var otherwise = 'youtube';
-     switch(config.video_type){
+     switch(config.video.video_type){
        case "youtube":
        break;
        case "vimeo":
@@ -47,10 +47,17 @@ angular
         templateUrl: 'views/vimeo.html',
         controller: 'VimeoCtrl',
         prettyName: 'vimeo'
-      });
+      })
+      .state('video.embed', {
+        url : '/embed',
+        templateUrl: 'views/embed.html',
+        controller: 'EmbedCtrl',
+        prettyName: 'embed'
+      });      
   }])
   .run(['$document', '$rootScope', '$q', '$window', 'config', '$state', function($document, $rootScope, $q, $window, config, $state){
      $rootScope.state = $state;
+     $rootScope.video = config.video;
      window.$rootScope = $rootScope;
      window.$state = $state;
       console.log('app started', config);
@@ -74,13 +81,14 @@ angular
     console.log('message messaged :P', event);
     angular.module('appApp')
     .constant('config', event.data)
-    .service('storage', [function(){
+    .service('storage', ['$rootScope', function($rootScope){
       return {
         save : function(data){
           var obj = {
             UID : event.data.UID,
             data : data
           };
+          $rootScope.video = data;
           console.log('passing obj up : ', obj);
           event.source.postMessage(obj, "*");
         }
@@ -90,8 +98,8 @@ angular
   });  
   
   window.test = function(){
-    var testData, data;
-    data = {
+    var testData, video;
+    video = {
       "video_type":"vimeo",
       "video":{
         "id":101895020,
@@ -122,7 +130,7 @@ angular
     }; 
     testData = {
       init : true,
-      video : data,
+      video : video,
       UID : Math.floor( Math.random() * 10000000000 ),
       youtube : {
         APIKey : 'AIzaSyBUi36u48h1eFld14jwUajKKpiI61UMyDM'

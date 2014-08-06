@@ -9,8 +9,9 @@
  */
 angular.module('appApp')
   .controller('VimeoCtrl', ['$scope', '$rootScope', '$http', 'config', 'storage', function ($scope, $rootScope, $http, config, storage) {
-       if (config.youtube.video){
-         
+       var type = 'vimeo';
+       if ($rootScope.video.video_type === type){
+         $scope.r = $rootScope.video.video;
        };
        $scope.fetch = function(id){
           $rootScope.youtubeReady.promise.then(function(){
@@ -19,7 +20,7 @@ angular.module('appApp')
                   console.log('data!', data);
                   $scope.r = data[0];
                   storage.save({    
-                    video_type : 'vimeo',                  
+                    video_type : type,                  
                     video : $scope.r
                   });
               }).

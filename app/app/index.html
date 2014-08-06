@@ -30,11 +30,16 @@
 
       <div ui-view=""></div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+      <footer class="footer">
+       <div class="credits-trigger" ng-click="showCredits = !showCredits">Credits & info</div>
+       <div class="credits" ng-show="showCredits">
+         <ul>
+           <li>Joseph Niet</li>
+           <li>The Creative Corporation</li>
+         </ul>
+       </div>
+      </footer>
     </div>
-
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -74,6 +79,7 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/youtube.js"></script>
         <script src="scripts/controllers/vimeo.js"></script>
+        <script src="scripts/controllers/embed.js"></script>
         <!-- endbuild -->
 </body>
 </html>
