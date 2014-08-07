@@ -1,14 +1,15 @@
 <link rel="stylesheet" href="<?php echo plugin_dir_url(__FILE__); ?>/css/main.css" />
 <script type="text/javascript">
-  window.acfVideoInit = function(iframe) {
-    var $ = jQuery;
+
+var Manager = (function(iframe){
+    var $ = jQuery,
     input = $(iframe).siblings('input'),
     UID = Math.floor( Math.random() * 10000000000 ),
-    iWindow = iframe.contentWindow;
-    
+    iWindow = iframe.contentWindow,
+    Manager = this;
     
     //RESIZE IFRAME
-    function resize(){
+    Manager.resize = function(){
       setTimeout(function(){
         $(iframe).height(iWindow.$(iWindow.document).height());//resize our iframe to fit new size;            
       }, 500);      
@@ -22,7 +23,7 @@
         if (event.data.UID === UID){//match UID to make sure we're dealing with correct field
           sanitized = encodeURIComponent(JSON.stringify(event.data.data));
           input.val(sanitized);
-          resize();     
+          Manager.resize();     
         }
       });
     }    
@@ -50,7 +51,15 @@
       iframe.contentWindow.postMessage(data, "*");
     }
     setData();
-    resize();
-    listen();
+    Manager.resize();
+    setTimeout(function(){//lazy;
+    	Manager.resize();
+    },1500);
+    listen();	
+});
+  window.acfVideos = [];
+  window.acfVideoInit = function(iframe) {
+	acfVideos.push(new Manager(iframe) );
   }
+  delete Manager;
 </script>
