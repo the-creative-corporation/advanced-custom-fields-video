@@ -1,0 +1,11 @@
+<!doctype html> <html class="no-js"> <head> <meta charset="utf-8"> <title></title> <meta name="description" content=""> <meta name="viewport" content="width=device-width"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/main.6b282493.css">  <body class="{{state.current.prettyName}}"> <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]--> <!-- Add your site or application content here --> <div class="container"> <div class="header"> <ul class="nav"> <li class="youtube" ui-sref-active="active"><a ui-sref="video.youtube">Youtube</a></li> <li class="vimeo" ui-sref-active="active"><a ui-sref="video.vimeo">Vimeo</a></li> <li class="embed" ui-sref-active="active"><a ui-sref="video.embed">Embed</a></li> </ul> </div> <div ui-view=""></div> <footer class="footer"> <div class="credits" ng-class="{active : showCredits}"> <div class="close" ng-click="showCredits = 0"> <i class="fa fa-times"></i> </div> <ul> <li>Joseph Niet</li> <li>The Creative Corporation</li> </ul> <div class="repo"> <a href="https://github.com/the-creative-corporation/advanced-custom-fields-youtube" target="_blank">GitHub Project</a> </div> </div> <div class="credits-trigger" ng-click="showCredits = !showCredits">Credits & info</div> </footer> </div> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');</script> <!--[if lt IE 9]>
+    <script src="scripts/oldieshim.ff90b0fb.js"></script>
+    <![endif]--> <script src="scripts/vendor.b8c43ee4.js"></script> <script src="scripts/scripts.9e7850b1.js"></script>  
