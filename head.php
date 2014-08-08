@@ -7,12 +7,12 @@ var Manager = (function(iframe){
     UID = Math.floor( Math.random() * 10000000000 ),
     iWindow = iframe.contentWindow,
     Manager = this;
-    
+
     //RESIZE IFRAME
     Manager.resize = function(){
       setTimeout(function(){
-        $(iframe).height(iWindow.$(iWindow.document).height());//resize our iframe to fit new size;            
-      }, 500);      
+        $(iframe).height(iWindow.$(iWindow.document).height());//resize our iframe to fit new size;
+      }, 500);
     }
     //LISTEN TO DATA BROADCAST FROM IFRAME
     function listen(){
@@ -23,11 +23,11 @@ var Manager = (function(iframe){
         if (event.data.UID === UID){//match UID to make sure we're dealing with correct field
           sanitized = encodeURIComponent(JSON.stringify(event.data.data));
           input.val(sanitized);
-          Manager.resize();     
+          Manager.resize();
         }
       });
-    }    
-    
+    }
+
     //LOAD DATA INTO IFRAME
     function setData(){
       var data, sanitized;
@@ -36,7 +36,7 @@ var Manager = (function(iframe){
       } catch(err) {
         console.log('error', err, input.val(), 'x');
         sanitized = false;
-      }    
+      }
       data = {
         init : true,
         UID : UID,
@@ -47,7 +47,7 @@ var Manager = (function(iframe){
         vimeo : {
           accessToken : '4fec9c74d7d247685ac39e3910ad5407'
         }
-      };    
+      };
       iframe.contentWindow.postMessage(data, "*");
     }
     setData();
@@ -55,7 +55,7 @@ var Manager = (function(iframe){
     setTimeout(function(){//lazy;
     	Manager.resize();
     },1500);
-    listen();	
+    listen();
 });
   window.acfVideos = [];
   window.acfVideoInit = function(iframe) {

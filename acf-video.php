@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Advanced Custom Fields: video 
-Plugin URI: 
+Plugin Name: Advanced Custom Fields: video
+Plugin URI:
 Description: Add-On plugin for Advanced Custom Fields (ACF) that adds a 'video' Field type.
 Version: 0.0.0
 Author: Joseph Niet
@@ -15,11 +15,11 @@ class acf_field_video_plugin
 	/*
 	*  Construct
 	*
-	*  @description: 
+	*  @description:
 	*  @since: 3.6
 	*  @created: 1/04/13
 	*/
-	
+
 	function __construct()
 	{
 		// set text domain
@@ -28,31 +28,31 @@ class acf_field_video_plugin
 		$mofile = trailingslashit(dirname(__File__)) . 'lang/' . $domain . '-' . get_locale() . '.mo';
 		load_textdomain( $domain, $mofile );
 		*/
-		
-		
+
+
 		// version 4+
-		add_action('acf/register_fields', array($this, 'register_fields'));	
+		add_action('acf/register_fields', array($this, 'register_fields'));
 		add_action('acf/input/admin_head', array($this, 'setup_scripts'));
 	}
-	
+
 	/*
 	*  register_fields
 	*
-	*  @description: 
+	*  @description:
 	*  @since: 3.6
 	*  @created: 1/04/13
 	*/
-	
+
 	function register_fields()
 	{
 		include_once('video-v4.php');
 	}
-	
+
 	function setup_scripts(){
-		include_once('head.php');	
+		include_once('head.php');
 	}
 }
 
 new acf_field_video_plugin();
-		
+
 ?>

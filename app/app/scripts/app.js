@@ -31,7 +31,7 @@ angular
        default:
        break;
      }
-    
+
     $urlRouterProvider.otherwise(otherwise);
     $stateProvider
       .state('video', {
@@ -55,7 +55,7 @@ angular
         templateUrl: 'views/embed.html',
         controller: 'EmbedCtrl',
         prettyName: 'embed'
-      });      
+      });
   }])
   .run(['$document', '$rootScope', '$q', '$window', 'config', '$state', 'storage', function($document, $rootScope, $q, $window, config, $state, storage){
      $rootScope.state = $state;
@@ -76,7 +76,7 @@ angular
           //$rootScope.$broadcast( 'onYouTubePlayerAPIReady' );
       };
   }]);
-  
+
   //INIT APP WITH SOME PASSED IN PARAMS.
   window.addEventListener("message", function(event){
     if (!event.data.init){
@@ -100,17 +100,17 @@ angular
         remove : function(){
           var obj = {
             UID : event.data.UID,
-            data : null 
+            data : null
           };
           $rootScope.video = null;
           console.log('passing obj up : ', obj);
-          event.source.postMessage(obj, "*"); 
-        }        
+          event.source.postMessage(obj, "*");
+        }
       };
     }]);
     angular.bootstrap(document, ['appApp']);
-  });  
-  
+  });
+
   window.test = function(){
     var testData, video;
     video = {
@@ -141,7 +141,7 @@ angular
         "tags":"Freefly, Tero, RC car, HPI, MoVI, m10, m15, Vision Research, Phantom, Miro, Miro LC320, high speed, super slowmo, 1500fps, 2000fps, nyc, brooklyn, manhattan, red epic dragon, leica r",
         "embed_privacy":"anywhere"
       }
-    }; 
+    };
     testData = {
       init : true,
       video : video,

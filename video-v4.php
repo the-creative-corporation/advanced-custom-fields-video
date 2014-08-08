@@ -63,10 +63,6 @@ class acf_field_video extends acf_field
 
 
 		// Create Field Options HTML
-		?>
-
-		<?php
-
 	}
 
 	/*
@@ -233,7 +229,51 @@ class acf_field_video extends acf_field
 
 	function update_value( $value, $post_id, $field ) {
 
-		return json_decode( urldecode( $value ) );
+		if ( $value = json_decode( urldecode( $value ) ) ) {
+			if ( !get_post_thumbnail_id( $post_id ) ) {
+				$img_url = $img_title = '';
+				$video   = $value->video;
+
+				switch ( $value->video_type ) {
+					case 'youtube':
+						if ( isset( $video->snippet->thumbnails->high ) ) {
+							$img_url = $video->snippet->thumbnails->high->url;
+						} elseif ( isset( $video->snippet->thumbnails->max_res ) ) {
+							$img_url = $video->snippet->thumbnails->max_res->url;
+						} elseif ( isset( $video->snippet->thumbnails->standard ) ) {
+							$img_url = $video->snippet->thumbnails->standard->url;
+						} else {
+							$img_url = 'http://img.youtube.com/vi/' . $video->id . '/0.jpg';
+						}
+						break;
+					case 'vimeo':
+						if (isset( $video->thumbnail_large )) {
+							$img_url = $video->thumbnail_large;
+						}
+						break;
+				}
+
+				if ( $img_url ) {
+					media_sideload_image( $img_url, $post_id, $img_title );
+
+			        // find the most recent attachment
+			        $attachments = get_posts(
+			            array(
+							'post_type'   => 'attachment',
+							'post_parent' => $post_id,
+							'numberposts' => 1,
+							'order'       => 'ASC',
+			            )
+			        );
+			        $attachment = $attachments[0];
+
+			        // and set it as the post thumbnail
+			        set_post_thumbnail( $post_id, $attachment->ID );
+				}
+			}
+		}
+
+		return $value;
 	}
 }
 
