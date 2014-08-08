@@ -1,20 +1,25 @@
 <link rel="stylesheet" href="<?php echo plugin_dir_url(__FILE__); ?>/css/main.css" />
 <script type="text/javascript">
-  window.acfVideoInit = function(iframe) {
+  var IframeManager = (function(iframe){
+    var Manager = this;
+    var iframe = iframe;
     var $ = jQuery;
     input = $(iframe).siblings('input'),
     UID = Math.floor( Math.random() * 10000000000 ),
     iWindow = iframe.contentWindow;
     
-    
+    this.iframe = iframe;
+    this.iWindow = iWindow;
+    this.input = input;
+    this.UID = UID;
     //RESIZE IFRAME
-    function resize(){
+    this.resize = function(){
       setTimeout(function(){
         $(iframe).height(iWindow.$(iWindow.document).height());//resize our iframe to fit new size;            
-      }, 500);      
+      }, 1000);      
     }
     //LISTEN TO DATA BROADCAST FROM IFRAME
-    function listen(){
+    this.listen = function(){
       window.addEventListener("message", function(event){
         var sanitized;
         //$rootScope.settings.resolve();
@@ -28,7 +33,7 @@
     }    
     
     //LOAD DATA INTO IFRAME
-    function setData(){
+    this.setData = function(){
       var data, sanitized;
       try {
         sanitized = JSON.parse(decodeURIComponent(input.val()));
@@ -49,8 +54,14 @@
       };    
       iframe.contentWindow.postMessage(data, "*");
     }
-    setData();
-    resize();
-    listen();
+    Manager.setData();
+    Manager.resize();
+    Manager.listen();    
+  });
+  window.acfVideoIframes = [];
+  window.acfVideoInit = function(iframe) {
+    acfVideoIframes.push(new IframeManager(iframe));
   }
+  delete IframeManager;
+  
 </script>

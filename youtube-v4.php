@@ -157,7 +157,7 @@ class acf_field_youtube extends acf_field
 
 	function update_field( $field, $post_id )
 	{
-		die(var_dump($field));
+		//die(var_dump($field));
 
 		// format sub_fields
 		if( $field['layouts'] )
